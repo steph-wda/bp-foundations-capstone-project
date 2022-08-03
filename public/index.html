@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Stephanie Wilks" />
+    <meta name="description" content="Best place on the web for trivia!" />
+    <meta name="keywords" content="daily trivia, studying, flashcards" />
+    <title>BP-Foundations Capstone Project</title>
+  </head>
+  <body>
+    <header>
+      <img src="./styles/TMP.png" />
+    </header>
+
+    <section>
+      <h1>Trivia With A Purpose. Or Not.</h1>
+      <p>
+        Play through a randomized deck for fun or create your own to study with.
+      </p>
+
+      <div>
+        <h2>Today's Trivia Daily</h2>
+      </div>
+
+      <div>
+        <h2>Are you a trivia master? Add your question and answer here.</h2>
+        <p>All fields are required</p>
+        <form>
+          <label for="question-category">Select Category:</label>
+          <select name="question-category" id="question-category" required>
+            <option value="27">Animals</option>
+            <option value="25">Art</option>
+            <option value="26">Celebrities</option>
+            <option value="10">Entertainment: Books</option>
+            <option value="32">Entertainment: Cartoon & Animations</option>
+            <option value="29">Entertainment: Comics</option>
+            <option value="11">Entertainment: Film</option>
+            <option value="31">Entertainment: Japanese Anime & Manga</option>
+            <option value="12">Entertainment: Music</option>
+            <option value="13">Entertainment: Musicals Theatres</option>
+            <option value="14">Entertainment: Television</option>
+            <option value="15">Entertainment: Video Games</option>
+            <option value="16">Entertainment: Board Games</option>
+            <option value="9">General Knowledge</option>
+            <option value="22">Geography</option>
+            <option value="23">History</option>
+            <option value="17">Science & Nature</option>
+            <option value="18">Science: Computers</option>
+            <option value="30">Science: Gadgets</option>
+            <option value="19">Science: Mathematics</option>
+            <option value="21">Sports</option>
+            <option value="20">Mythology</option>
+            <option value="24">Politics</option>
+            <option value="28">Vehicles</option>
+          </select>
+
+          <label for="question-type">Select Question Type:</label>
+          <select name="question-type" id="question-type" required>
+            <option value="multiple">Multipe Choice</option>
+            <option value="boolean">True / False</option>
+          </select>
+
+          <label for="question-difficulty">Select Diffculty:</label>
+          <select name="question-difficulty" id="question-difficulty" required>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+
+          <label for="trivia-question">Enter in trivia/question:</label>
+          <input
+            type="text"
+            name="trivia-question"
+            id="trivia-question"
+            required
+          />
+          <label for="correct-answer">Enter in the correct answer:</label>
+          <input
+            type="text"
+            name="correct-answer"
+            id="correct-answer"
+            required
+          />
+          <label for="incorrect-answer">Enter in the incorrect answer:</label>
+          <input
+            type="text"
+            name="incorrect-answer"
+            id="incorrect-answer"
+            placeholder="If this is a multiple choice question, you have to enter in three incorrect answers seperated by a comma"
+            required
+          />
+          <button value="sumbit">Sumbit Your Trivia!</button>
+        </form>
+      </div>
+    </section>
+    <section>
+      <div>
+        <h2></h2>
+        <p>
+          Click the "Randomize" button to get trivia from any category or
+          select from the options below to create a deck based on a particular
+          topic.
+        </p>
+        <form>
+          <label for="deck-category">Select Category:</label>
+          <select name="deck-category" id="deck-category">
+            <option value="1" selected>Any</option>
+            <option value="27">Animals</option>
+            <option value="25">Art</option>
+            <option value="26">Celebrities</option>
+            <option value="10">Entertainment: Books</option>
+            <option value="32">Entertainment: Cartoon & Animations</option>
+            <option value="29">Entertainment: Comics</option>
+            <option value="11">Entertainment: Film</option>
+            <option value="31">Entertainment: Japanese Anime & Manga</option>
+            <option value="12">Entertainment: Music</option>
+            <option value="13">Entertainment: Musicals Theatres</option>
+            <option value="14">Entertainment: Television</option>
+            <option value="15">Entertainment: Video Games</option>
+            <option value="16">Entertainment: Board Games</option>
+            <option value="9">General Knowledge</option>
+            <option value="22">Geography</option>
+            <option value="23">History</option>
+            <option value="17">Science & Nature</option>
+            <option value="18">Science: Computers</option>
+            <option value="30">Science: Gadgets</option>
+            <option value="19">Science: Mathematics</option>
+            <option value="21">Sports</option>
+            <option value="20">Mythology</option>
+            <option value="24">Politics</option>
+            <option value="28">Vehicles</option>
+          </select>
+
+          <label for="deck-amount"> Number of Cards:</label>
+          <input
+            name="deck-amount"
+            id="deck-amount"
+            type="number"
+            min="1"
+            max="25"
+          />
+
+          <label for="deck-type">Select Question Type:</label>
+          <select name="deck-type" id="deck-type">
+            <option value="any" selected>Any</option>
+            <option value="multiple">Multipe Choice</option>
+            <option value="boolean">True / False</option>
+          </select>
+
+          <label for="deck-difficulty">Select Diffculty:</label>
+          <select name="deck-difficulty" id="deck-difficulty">
+            <option value="any" selected>Any</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <button value="sumbit">Randomize</button>
+          <button value="sumbit">Create</button>
+        </form>
+      </div>
+    </section>
+
+    <script></script>
+  </body>
+</html>
