@@ -1,0 +1,28 @@
+body{
+    margin:0px;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+.header{
+    background-color: #1F2D5A;
+}
+
+.header img {
+    width:20%;
+
+}
+
+div.top select{
+    display: block;
+    margin: 15px;
+}
+div.top input{
+    display: block;
+    margin: 15px;
+}
+
