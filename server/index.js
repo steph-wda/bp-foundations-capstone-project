@@ -12,6 +12,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "/../public")));
 
 const { 
+  buildDatabase,
   getDaily
 } = require('./controller')
 
@@ -20,7 +21,9 @@ app.get("/", (req, res) => {
   });
 
 
-  app.get("/api/daily", getDaily)
+app.get("/api/db", buildDatabase)
+app.get("/api/daily", getDaily)
+
 
 
 
