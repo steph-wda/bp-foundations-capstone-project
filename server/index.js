@@ -13,7 +13,8 @@ app.use(express.static(path.join(__dirname, "/../public")));
 
 const { 
   buildDatabase,
-  getDaily
+  getDaily, 
+  getRandomDeck
 } = require('./controller')
 
 app.get("/", (req, res) => {
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
 
 app.get("/api/db", buildDatabase)
 app.get("/api/daily", getDaily)
+app.get("/api/random", getRandomDeck)
 
 
 

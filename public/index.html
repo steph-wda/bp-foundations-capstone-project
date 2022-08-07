@@ -8,22 +8,23 @@
     <meta name="description" content="Best place on the web for trivia!" />
     <meta name="keywords" content="daily trivia, studying, flashcards" />
     <title>BP-Foundations Capstone Project</title>
-    <link rel="stylesheet" type="text/css" href="./styles/styles.css" >
+    <link rel="stylesheet" type="text/css" href="./styles/styles.css" />
   </head>
+
   <body>
     <header class="header">
       <img src="./styles/TMP.png" alt="The TriviaMePlease logo" />
     </header>
 
-    <h1 style="text-align: center ;">Trivia With A Purpose. Or Not.</h1>
-    <p style="text-align: center ;">
+    <h1 style="text-align: center">Trivia With A Purpose. Or Not.</h1>
+    <p style="text-align: center">
       Play through a randomized deck for fun or create your own to study with.
     </p>
 
     <section class="container">
       <div>
         <h2>Today's Trivia Daily</h2>
-        <div class="daily-trivia"></div>
+        <div id="daily-trivia"></div>
       </div>
 
       <div class="top">
@@ -93,7 +94,7 @@
             placeholder="If this is a multiple choice question, you have to enter in three incorrect answers seperated by a comma"
             required
           />
-          <button value="sumbit">Sumbit Your Trivia!</button>
+          <button id="sumbit-new-qa" value="sumbit">Sumbit Your Trivia!</button>
         </form>
       </div>
     </section>
@@ -101,9 +102,8 @@
       <div>
         <h2></h2>
         <p>
-          Click the "Randomize" button to get trivia from any category or
-          select from the options below to create a deck based on a particular
-          topic.
+          Click the "Randomize" button to get trivia from any category or select
+          from the options below to create a deck based on a particular topic.
         </p>
         <form class="create-deck">
           <label for="deck-category">Select Category:</label>
@@ -158,12 +158,18 @@
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
           </select>
-          <button value="sumbit">Randomize</button>
+          <button value="sumbit" id="random-qa">Randomize</button>
           <button value="sumbit">Create</button>
         </form>
       </div>
+      <div>
+        <p>Cards will be displayed here</p>
+        <div id="random-card-section"></div>
+        <div id="study-card-section"></div>
+      </div>
     </section>
 
-    <script></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
