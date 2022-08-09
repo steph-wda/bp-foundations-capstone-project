@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 
-app.use(express.static(path.join(__dirname, "/../public")));
+app.use(express.static("public"));
 
 const { 
   buildDatabase,
@@ -18,7 +18,7 @@ const {
 } = require('./controller')
 
 app.get("/", (req, res) => {
-    res.sendFile(path.resolve("public/index.html"));
+    res.sendFile(path.join(__dirname, "../public/index.html"));
   });
 
 
