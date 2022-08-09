@@ -1,4 +1,5 @@
 const axios = require("axios");
+
 let triviaQA =[]
 globalId = 50
 
@@ -37,6 +38,29 @@ getRandomDeck: (req, res) => {
         })
         .catch((err) => console.log(err));  
   
+
+},
+
+getStudyDeck: (req, res) => {
+  const {amount,category,type,difficulty} = req.query
+  
+  if(type === undefined && difficulty === undefined){
+    axios.get(`https://opentdb.com/api.php?amount=${amount}&category=${category}`).then(response => {
+      res.status(200).send(response.data.results)
+    })
+   }else if(type !== undefined && difficulty === undefined){
+    axios.get(`https://opentdb.com/api.php?amount=${amount}&category=${category}&type=${type}`).then(response => {
+      res.status(200).send(response.data.results)
+    })
+   }else if(type === undefined && difficulty !== undefined){
+    axios.get(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}`).then(response => {
+      res.status(200).send(response.data.results)
+    })
+   }else{
+    axios.get(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`).then(response => {
+      res.status(200).send(response.data.results)
+    })
+   }
 
 }
 
