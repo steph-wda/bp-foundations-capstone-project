@@ -1,5 +1,5 @@
-const searchBtn = document.getElementById("search-btn")
-const searchInput = document.getElementById("search")
+const searchBtn = document.getElementById("search-btn");
+const searchInput = document.getElementById("search");
 const dailyTriviaH2 = document.getElementById("daily-trivia-heading");
 const dailyTriviaDiv = document.getElementById("daily-trivia");
 const randomizeBtn = document.getElementById("random-qa");
@@ -17,6 +17,8 @@ const addDifficulty = document.getElementById("question-difficulty");
 const addQuestion = document.getElementById("trivia-question");
 const addCorrectAnswer = document.getElementById("correct-answer");
 const addIncorrectAnswer = document.getElementById("incorrect-answer");
+const modalContainerDiv = document.getElementById("my-modal");
+const modalContentDiv = document.querySelector(".modal-content");
 
 const getDailyTriviaHeading = () => {
   const months = [
@@ -51,22 +53,66 @@ const getDailyTriviaHeading = () => {
   dailyTriviaH2.innerHTML = `Daily Trivia For ${day}, ${month} ${date}`;
 };
 
-const getResults = (e) => {
-  e.preventDefault()
-  let searchArray = JSON.parse(localStorage.getItem("triviaDB"))
-  console.log(searchArray[0])
-  console.log(typeof searchArray[0].question)
+const displayResults = (results) => {
+  if(document.getElementsByClassName('close') !== null){
+    modalContentDiv.innerHTML=''
+  }
 
-  let results = []
-  
-  // searchArray.forEach( set => {
-  //   if(set.question.search(/searchInput.value/i) !== -1){
-  //     console.log('yep')
-  //     results.push([set.question, set.correct_answer])
-  //   }
-  // })
-  // console.log(results)
+  if(results.length < 1){
+    alert('No matches found')
+  }else {
+  let numberOfMatches = results.length/2
+  let resultsHeading = document.createElement("h3")
+  let mSpan = document.createElement("span");
+  mSpan.setAttribute("class", "close");
+  modalContentDiv.appendChild(mSpan);
+  modalContentDiv.appendChild(resultsHeading)
+  mSpan.innerHTML = `&times;`;
+  resultsHeading.innerHTML = `${numberOfMatches} Matches Returned`
+  mSpan.onclick = function(){
+    modalContainerDiv.style.display = 'none'
+  }
+  window.onclick = function(event){
+    if(event.target === modalContainerDiv){
+      modalContainerDiv.style.display = 'none'
+    }
+  }
+
+  for (let i = 0; i < results.length; i = i + 2) {
+    j = i + 1;
+    let qPara = document.createElement("p");
+    let aPara = document.createElement("p");
+    modalContentDiv.appendChild(qPara);
+    modalContentDiv.appendChild(aPara);
+    modalContentDiv.append(document.createElement("hr"));
+    qPara.innerHTML = results[i];
+    aPara.innerHTML = results[j];
+  }
+
+  modalContainerDiv.style.display ="block"
 }
+};
+
+const getResults = (e) => {
+  e.preventDefault();
+  let searchArray = JSON.parse(localStorage.getItem("triviaDB"));
+  console.log(typeof searchArray[0].question);
+
+  let regex = new RegExp(searchInput.value, "i");
+
+  console.log(searchInput.value);
+
+  let results = [];
+
+  searchArray.forEach((set) => {
+    if (set.question.search(regex) !== -1) {
+      console.log(set.question);
+      results.push(set.question);
+      results.push(set.correct_answer);
+    }
+  });
+  displayResults(results);
+};
 
 const rightAnswerClicked = () => {
   let right = document.getElementById("card-correct-answer");
@@ -315,7 +361,7 @@ const addQuestionHandler = (e) => {
       triviaDB.push(responseArray[0]);
     }
     localStorage.setItem("triviaDB", JSON.stringify(triviaDB));
-
+    alert("Your question and answer have been saved!");
   });
 };
 
@@ -335,4 +381,4 @@ document.addEventListener("DOMContentLoaded", createDBHandler);
 randomizeBtn.addEventListener("click", getRandomQAHandler);
 studyBtn.addEventListener("click", createStudyQAHandler);
 addQABtn.addEventListener("click", addQuestionHandler);
-searchBtn.addEventListener("click", getResults)
+searchBtn.addEventListener("click", getResults);

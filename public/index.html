@@ -23,6 +23,10 @@
     </div>
     </header>
 
+    <div id="my-modal" class="modal">
+      <div class="modal-content">
+      </div>
+    </div>
     <h1 style="text-align: center">Trivia With A Purpose. Or Not.</h1>
     <p style="text-align: center">
       Play through a randomized deck for fun or create your own to study with.
@@ -80,12 +84,11 @@
           </select>
 
           <label for="trivia-question">Enter in trivia/question:</label>
-          <input
-            type="text"
-            name="trivia-question"
-            id="trivia-question"
-            required
-          />
+          <textarea name="trivia-question"
+          id="trivia-question"
+          required>
+            
+          </textarea>
           <label for="correct-answer">Enter in the correct answer:</label>
           <input
             type="text"
@@ -94,16 +97,15 @@
             required
           />
           <label for="incorrect-answer">Enter in the incorrect answer:</label>
-          <input
-            type="text"
-            name="incorrect-answer"
-            id="incorrect-answer"
-            placeholder="If this is a multiple choice question, you have to enter in three incorrect answers seperated by a comma"
-            required
-          />
+          <textarea
+          name="incorrect-answer"
+          id="incorrect-answer"
+          placeholder="If this is a multiple choice question, you have to enter in three incorrect answers seperated by a comma"
+          required>
+            
+          </textarea>
           <button id="sumbit-new-qa">Sumbit Your Trivia!</button>
         </form>
-        <div class="alert"><span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>New Question Set Has Been Added!</div>
       </div>
     </section>
     <section>
