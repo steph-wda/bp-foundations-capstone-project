@@ -1,3 +1,5 @@
+const searchBtn = document.getElementById("search-btn")
+const searchInput = document.getElementById("search")
 const dailyTriviaH2 = document.getElementById("daily-trivia-heading");
 const dailyTriviaDiv = document.getElementById("daily-trivia");
 const randomizeBtn = document.getElementById("random-qa");
@@ -48,6 +50,23 @@ const getDailyTriviaHeading = () => {
 
   dailyTriviaH2.innerHTML = `Daily Trivia For ${day}, ${month} ${date}`;
 };
+
+const getResults = (e) => {
+  e.preventDefault()
+  let searchArray = JSON.parse(localStorage.getItem("triviaDB"))
+  console.log(searchArray[0])
+  console.log(typeof searchArray[0].question)
+
+  let results = []
+  
+  // searchArray.forEach( set => {
+  //   if(set.question.search(/searchInput.value/i) !== -1){
+  //     console.log('yep')
+  //     results.push([set.question, set.correct_answer])
+  //   }
+  // })
+  // console.log(results)
+}
 
 const rightAnswerClicked = () => {
   let right = document.getElementById("card-correct-answer");
@@ -198,7 +217,6 @@ const createFrontCardStudy = (set) => {
     randomDiv.innerHTML = "";
   }
 
-  console.log(set);
   let currentCard = 1;
   let totalCards = set.length;
   studyDiv.innerHTML = "";
@@ -297,6 +315,7 @@ const addQuestionHandler = (e) => {
       triviaDB.push(responseArray[0]);
     }
     localStorage.setItem("triviaDB", JSON.stringify(triviaDB));
+
   });
 };
 
@@ -316,3 +335,4 @@ document.addEventListener("DOMContentLoaded", createDBHandler);
 randomizeBtn.addEventListener("click", getRandomQAHandler);
 studyBtn.addEventListener("click", createStudyQAHandler);
 addQABtn.addEventListener("click", addQuestionHandler);
+searchBtn.addEventListener("click", getResults)
