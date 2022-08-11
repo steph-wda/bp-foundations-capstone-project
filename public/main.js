@@ -1,15 +1,53 @@
+const dailyTriviaH2 = document.getElementById("daily-trivia-heading");
 const dailyTriviaDiv = document.getElementById("daily-trivia");
 const randomizeBtn = document.getElementById("random-qa");
 const randomDiv = document.getElementById("random-card-section");
-const studyCategory = document.getElementById("deck-category")
-const studyAmount = document.getElementById("deck-amount")
-const studyType = document.getElementById("deck-type")
-const studyDifficulty = document.getElementById("deck-difficulty")
+const studyCategory = document.getElementById("deck-category");
+const studyAmount = document.getElementById("deck-amount");
+const studyType = document.getElementById("deck-type");
+const studyDifficulty = document.getElementById("deck-difficulty");
 const studyBtn = document.getElementById("study-qa");
 const studyDiv = document.getElementById("study-card-section");
+const addQABtn = document.getElementById("sumbit-new-qa");
+const addCategory = document.getElementById("question-category");
+const addType = document.getElementById("question-type");
+const addDifficulty = document.getElementById("question-difficulty");
+const addQuestion = document.getElementById("trivia-question");
+const addCorrectAnswer = document.getElementById("correct-answer");
+const addIncorrectAnswer = document.getElementById("incorrect-answer");
 
+const getDailyTriviaHeading = () => {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const weekdays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
+  const d = new Date();
+  let day = weekdays[d.getDay()];
+  let month = months[d.getMonth()];
+  let date = d.getDate();
 
+  dailyTriviaH2.innerHTML = `Daily Trivia For ${day}, ${month} ${date}`;
+};
 
 const rightAnswerClicked = () => {
   let right = document.getElementById("card-correct-answer");
@@ -42,7 +80,6 @@ const createCardBack = (correct, incorrect) => {
 
   if (answersArray.length > 4) {
     console.log("date");
-
   }
 
   //will randomize the answers so that the correct answer is not always in the same spot on the card
@@ -78,9 +115,9 @@ const createCardBack = (correct, incorrect) => {
 };
 
 const createCardFrontRandom = (set) => {
-  if(studyDiv.innerHTML){
-    console.log('div detected')
-    studyDiv.innerHTML=''
+  if (studyDiv.innerHTML) {
+    console.log("div detected");
+    studyDiv.innerHTML = "";
   }
   console.log(set);
   let currentCard = 1;
@@ -117,25 +154,22 @@ const createCardFrontRandom = (set) => {
   });
 };
 
-
 const getRandomQAHandler = (e) => {
   e.preventDefault();
   axios.get("api/random").then((res) => {
     const randomSet = res.data;
     createCardFrontRandom(randomSet);
   });
-}
+};
 
 const createDBHandler = () => {
-  if(localStorage.length > 0){
-    localStorage.clear()
+  if (localStorage.length < 1) {
+    axios.get("/api/db").then((res) => {
+      let triviaDB = JSON.stringify(res.data);
+      localStorage.setItem("triviaDB", triviaDB);
+    });
   }
-  axios.get("/api/db").then(res => {
-    let triviaDB = JSON.stringify(res)
-    localStorage.setItem('triviaDB', triviaDB)
-  })
-}
-
+};
 
 const createCardBackStudy = (correct) => {
   //checks to see if an element with a class of card-body exists, if id does it will clear it
@@ -156,14 +190,12 @@ const createCardBackStudy = (correct) => {
   correctAnswerPara.setAttribute("id", "card-correct-answer");
   answerBody.appendChild(correctAnswerPara);
   correctAnswerPara.innerHTML = correct;
-      
-}
-
+};
 
 const createFrontCardStudy = (set) => {
-  if(randomDiv.innerHTML){
-    console.log('div detected')
-    randomDiv.innerHTML=''
+  if (randomDiv.innerHTML) {
+    console.log("div detected");
+    randomDiv.innerHTML = "";
   }
 
   console.log(set);
@@ -174,8 +206,6 @@ const createFrontCardStudy = (set) => {
     if (s.correct_answer.includes('"')) {
       console.log(`yes " ${currentCard}`);
       s.correct_answer = s.correct_answer.replace(/"/g, " ");
-      
-
     }
     if (s.correct_answer.includes("&quot;")) {
       console.log(`yes quot ${currentCard}`);
@@ -195,41 +225,80 @@ const createFrontCardStudy = (set) => {
     studyDiv.innerHTML += triviaCard;
     currentCard++;
   });
-
-}
+};
 
 const createStudyQAHandler = (e) => {
-  e.preventDefault()
-  let category = studyCategory.value
-  let amount = studyAmount.value
-  let type = studyType.value
-  let difficulty = studyDifficulty.value
+  e.preventDefault();
+  let category = studyCategory.value;
+  let amount = studyAmount.value;
+  let type = studyType.value;
+  let difficulty = studyDifficulty.value;
 
-  if(type === 'any' && difficulty === 'any'){
-    axios.get(`/api/study?amount=${amount}&category=${category}`).then(res => {
-      const studySet = res.data;
-      createFrontCardStudy(studySet)
-    })
-   }else if(type !== 'any' && difficulty === 'any'){
-    axios.get(`/api/study?amount=${amount}&category=${category}&type=${type}`).then(res => {
-      const studySet = res.data;
-      createFrontCardStudy(studySet)
-    })
-   }else if(type === 'any' && difficulty !== 'any'){
-    axios.get(`/api/study?amount=${amount}&category=${category}&difficulty=${difficulty}`).then(res => {
-      const studySet = res.data;
-      createFrontCardStudy(studySet)
-    })
-   }else{
-    axios.get(`/api/study?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`).then(res => {
-      const studySet = res.data;
-      createFrontCardStudy(studySet)
-    })
-   }
-}
+  if (type === "any" && difficulty === "any") {
+    axios
+      .get(`/api/study?amount=${amount}&category=${category}`)
+      .then((res) => {
+        const studySet = res.data;
+        createFrontCardStudy(studySet);
+      });
+  } else if (type !== "any" && difficulty === "any") {
+    axios
+      .get(`/api/study?amount=${amount}&category=${category}&type=${type}`)
+      .then((res) => {
+        const studySet = res.data;
+        createFrontCardStudy(studySet);
+      });
+  } else if (type === "any" && difficulty !== "any") {
+    axios
+      .get(
+        `/api/study?amount=${amount}&category=${category}&difficulty=${difficulty}`
+      )
+      .then((res) => {
+        const studySet = res.data;
+        createFrontCardStudy(studySet);
+      });
+  } else {
+    axios
+      .get(
+        `/api/study?amount=${amount}&category=${category}&difficulty=${difficulty}&type=${type}`
+      )
+      .then((res) => {
+        const studySet = res.data;
+        createFrontCardStudy(studySet);
+      });
+  }
+};
 
+const addQuestionHandler = (e) => {
+  e.preventDefault();
+  let icArray;
+  if (addIncorrectAnswer.value.includes(",")) {
+    icArray = addIncorrectAnswer.value.split(",");
+  } else {
+    icArray = [];
+    icArray.push(addIncorrectAnswer.value);
+  }
 
+  let bodyObj = {
+    category: addCategory.value,
+    type: addType.value,
+    difficulty: addDifficulty.value,
+    question: addQuestion.value,
+    correct_answer: addCorrectAnswer.value,
+    incorrect_answers: icArray,
+  };
 
+  axios.post("/api/addqa", bodyObj).then((response) => {
+    let triviaDB = JSON.parse(localStorage.getItem("triviaDB"));
+    let responseArray = response.data;
+    if (responseArray.length > 1) {
+      triviaDB.push(responseArray[responseArray.length - 1]);
+    } else {
+      triviaDB.push(responseArray[0]);
+    }
+    localStorage.setItem("triviaDB", JSON.stringify(triviaDB));
+  });
+};
 
 const getDailyTriviaHandler = () => {
   axios.get("/api/daily").then((res) => {
@@ -241,7 +310,9 @@ const getDailyTriviaHandler = () => {
   });
 };
 
+document.addEventListener("DOMContentLoaded", getDailyTriviaHeading);
 document.addEventListener("DOMContentLoaded", getDailyTriviaHandler);
 document.addEventListener("DOMContentLoaded", createDBHandler);
 randomizeBtn.addEventListener("click", getRandomQAHandler);
-studyBtn.addEventListener('click', createStudyQAHandler)
+studyBtn.addEventListener("click", createStudyQAHandler);
+addQABtn.addEventListener("click", addQuestionHandler);

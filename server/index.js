@@ -15,7 +15,8 @@ const {
   buildDatabase,
   getDaily, 
   getRandomDeck,
-  getStudyDeck
+  getStudyDeck,
+  createQA
 } = require('./controller')
 
 app.get("/", (req, res) => {
@@ -27,6 +28,7 @@ app.get("/api/db", buildDatabase)
 app.get("/api/daily", getDaily)
 app.get("/api/random", getRandomDeck)
 app.get("/api/study", getStudyDeck)
+app.post("/api/addqa", createQA)
 
 
 

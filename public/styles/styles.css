@@ -1,28 +1,100 @@
-body{
-    margin:0;
+body {
+  margin: 0;
+  background-color: #f5edf0;
 }
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: center;
 }
 
-.header{
-    background-color: #1F2D5A;
+.header {
+  background-color: #1f2d5a;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .header img {
-    width:20%;
+    width: 20%;
+  }
+  
+  
+
+.header form {
+  color:white;
+  display: flex;
+  padding: 2px;
+  border: 1px solid currentColor;
+  border-radius: 5px;
+  margin: 0 0 30px;
+}
+
+.header input[type="text"] {
+    border: none;
+  background: transparent;
+  margin: 0;
+  padding: 7px 8px;
+  font-size: 14px;
+  color: inherit;
+  border: 1px solid transparent;
+  border-radius: inherit;
 
 }
 
-div.top select{
-    display: block;
-    margin: 15px;
+.header button[id="search-btn"] {
+    text-indent: -999px;
+    overflow: hidden;
+    width: 40px;
+    padding: 0;
+    margin: 0;
+    border: 1px solid transparent;
+    border-radius: inherit;
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
+    cursor: pointer;
+    opacity: 0.7;
+  }
+  
+
+
+
+div.top select {
+  display: block;
+  margin: 15px;
 }
-div.top input{
-    display: block;
-    margin: 15px;
+div.top input {
+  display: block;
+  margin: 15px;
+}
+
+button {
+  box-sizing: border-box;
+  appearance: none;
+  background-color: #1f2d5a;
+  border-radius: 0.6em;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  border-color: #1f2d5a;
+  color: #fff;
+  transition: all 150ms ease-in-out;
+}
+
+button:hover,
+button:focus {
+  color: #fff;
+  outline: 0;
+  box-shadow: 0 0 10px 0 #1f2d5a inset, 0 0 10px 4px #1f2d5a;
 }
 

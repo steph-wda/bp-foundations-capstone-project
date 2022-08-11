@@ -1,0 +1,125 @@
+[
+  {
+    "id": 0,
+    "category": "Entertainment: Video Games",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "In Need for Speed: Underground, what car does Eddie drive?",
+    "correct_answer": "Nissan Skyline GT-R (R34)",
+    "incorrect_answers": [
+      "Mazda RX-7 FD3S",
+      "Acura Integra Type R",
+      "Subaru Impreza 2.5 RS"
+    ]
+  },
+  {
+    "id": 1,
+    "category": "Entertainment: Television",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "In the original Star Trek TV series, what was Captain James T. Kirk's middle name?",
+    "correct_answer": "Tiberius",
+    "incorrect_answers": ["Trevor", "Travis", "Tyrone"]
+  },
+  {
+    "id": 2,
+    "category": "Entertainment: Television",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which of these Bojack Horseman characters is a human?",
+    "correct_answer": "Todd Chavez",
+    "incorrect_answers": [
+      "Lennie Turtletaub",
+      "Princess Carolyn",
+      "Tom Jumbo-Grumbo"
+    ]
+  },
+  {
+    "id": 3,
+    "category": "Science: Computers",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "While Apple was formed in California, in which western state was Microsoft founded?",
+    "correct_answer": "New Mexico",
+    "incorrect_answers": ["Washington", "Colorado", "Arizona"]
+  },
+  {
+    "id": 4,
+    "category": "Entertainment: Video Games",
+    "type": "multiple",
+    "difficulty": "medium",
+    "question": "What two characters from the game Undertale are never in a relationship or not related?",
+    "correct_answer": "Frisk &amp; Chara",
+    "incorrect_answers": [
+      "Sans &amp; Papyrus",
+      "Toriel &amp; Asgore",
+      "Alphys &amp; Undyne"
+    ]
+  },
+  {
+    "id": 5,
+    "category": "Entertainment: Video Games",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Who is the creator of the Super Smash Bros. Series?",
+    "correct_answer": "Masahiro Sakurai",
+    "incorrect_answers": [
+      "Reggie Fils-Aim&eacute;",
+      "Bill Trinen",
+      "Hideo Kojima"
+    ]
+  },
+  {
+    "id": 6,
+    "category": "Entertainment: Video Games",
+    "type": "boolean",
+    "difficulty": "medium",
+    "question": "In \"League of Legends\", there exists four different types of Dragon.",
+    "correct_answer": "False",
+    "incorrect_answers": ["True"]
+  },
+  {
+    "id": 7,
+    "category": "Geography",
+    "type": "boolean",
+    "difficulty": "easy",
+    "question": "Nova Scotia is on the east coast of Canada.",
+    "correct_answer": "True",
+    "incorrect_answers": ["False"]
+  },
+  {
+    "id": 8,
+    "category": "Entertainment: Books",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "In the novel 1984, written by George Orwell, what is the name of the totalitarian regime that controls Oceania?",
+    "correct_answer": "INGSOC",
+    "incorrect_answers": [
+      "Neo-Bolshevism",
+      "Obliteration of the Self",
+      "Earth Alliance"
+    ]
+  },
+  {
+    "id": 9,
+    "category": "Entertainment: Music",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "Which of the following is not a studio album by the band Pink Floyd?",
+    "correct_answer": "Moving Pictures",
+    "incorrect_answers": [
+      "The Dark Side of the Moon",
+      "Wish You Were Here",
+      "Animals"
+    ]
+  },
+  {
+    "id": 10,
+    "category": "General Knowledge",
+    "type": "multiple",
+    "difficulty": "easy",
+    "question": "When someone is cowardly, they are said to have what color belly?",
+    "correct_answer": "Yellow",
+    "incorrect_answers": ["Green", "Red", "Blue"]
+  }
+]
