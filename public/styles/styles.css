@@ -1,13 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Mulish:wght@300&family=Signika+Negative&display=swap');
+
 body {
   margin: 0;
   background-color: #f5edf0;
-  font:"Montserrat", sans-serif;
+  font-family: 'Signika Negative', sans-serif;
 
 }
+
+
 .dt-container {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   align-content: center;
 }
@@ -121,6 +125,7 @@ div.top select {
   background-color: #f8f8f8;
   font-size: 16px;
 }
+
 div.top input {
   display: block;
   margin: 15px;
@@ -176,5 +181,91 @@ button:focus {
   color: #fff;
   outline: 0;
   box-shadow: 0 0 10px 0 #1f2d5a inset, 0 0 10px 4px #1f2d5a;
+}
+
+
+#deck-category, #deck-type, #deck-difficulty {
+ 
+  width: 150px;
+  height: 25px;
+ 
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+}
+
+#deck-amount{
+  
+  width: 50px;
+  height: 25px;
+  
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+}
+
+
+.random-container, .study-container {
+  width: 90%;
+  margin: 70px auto;
+}
+
+.random-row, .study-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-flow: wrap;
+}
+
+.card {
+  width: 30%;
+  border: 3px solid grey;
+  border-radius: 5px;
+  background: #1f2d5a;
+}
+
+.random-question, .study-question {
+  text-align: center;
+  color: white;
+  padding: 30px 10px;
+  background: #1f2d5a;
+}
+.content {
+  padding: 30px 20px;
+  text-align: justify;
+  font-size: 20px;
+}
+
+.button {
+  display: block;
+  text-align: center;
+  font-weight: 900;
+  font-size: 20px;
+  border-radius: 5px;
+  background: #1f2d5a;;
+  color: white;
+  margin-top: 30px;
+  text-decoration: none;
+  padding: 10px 5px;
+}
+
+@media screen and (max-width: 1000px) {
+  .card {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .container {
+    width: 100%;
+  }
+
+  .card {
+    width: 80%;
+  }
 }
 

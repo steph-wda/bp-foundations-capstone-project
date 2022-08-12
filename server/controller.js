@@ -24,11 +24,10 @@ module.exports = {
     axios
       .get("https://opentdb.com/api.php?amount=10")
       .then((response) => {
-        response.data.results.forEach((set = {}));
         res.status(200).send(response.data.results);
       })
       .catch((err) => console.log(err));
-  },
+},
 
   getStudyDeck: (req, res) => {
     const { amount, category, type, difficulty } = req.query;

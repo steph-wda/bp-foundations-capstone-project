@@ -8,7 +8,7 @@
     <meta name="description" content="Best place on the web for trivia!" />
     <meta name="keywords" content="daily trivia, studying, flashcards" />
     <title>BP-Foundations Capstone Project</title>
-   
+
     <link rel="stylesheet" type="text/css" href="./styles/styles.css" />
   </head>
 
@@ -16,16 +16,20 @@
     <header class="header">
       <img src="./styles/TMP.png" alt="The TriviaMePlease logo" />
       <div class="search-container">
-      <form>
-        <input type="text" name="search" id="search" placeholder="Search...">
-        <button id="search-btn">Search</button>
-      </form>
-    </div>
+        <form>
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="Search..."
+          />
+          <button id="search-btn">Search</button>
+        </form>
+      </div>
     </header>
 
     <div id="my-modal" class="modal">
-      <div class="modal-content">
-      </div>
+      <div class="modal-content"></div>
     </div>
     <h1 style="text-align: center">Trivia With A Purpose. Or Not.</h1>
     <p style="text-align: center">
@@ -48,15 +52,29 @@
             <option value="Art">Art</option>
             <option value="Celebrities">Celebrities</option>
             <option value="Entertainment: Books">Entertainment: Books</option>
-            <option value="Entertainment: Cartoon">Entertainment: Cartoon & Animations</option>
-            <option value="Entertainment: Cartoon & Animations">Entertainment: Comics</option>
+            <option value="Entertainment: Cartoon">
+              Entertainment: Cartoon & Animations
+            </option>
+            <option value="Entertainment: Cartoon & Animations">
+              Entertainment: Comics
+            </option>
             <option value="Entertainment: Film">Entertainment: Film</option>
-            <option value="Entertainment: Japanese Anime & Manga">Entertainment: Japanese Anime & Manga</option>
+            <option value="Entertainment: Japanese Anime & Manga">
+              Entertainment: Japanese Anime & Manga
+            </option>
             <option value="Entertainment: Music">Entertainment: Music</option>
-            <option value="Entertainment: Musicals Theatres">Entertainment: Musicals Theatres</option>
-            <option value="Entertainment: Television">Entertainment: Television</option>
-            <option value="Entertainment: Video Games">Entertainment: Video Games</option>
-            <option value="Entertainment: Board Games">Entertainment: Board Games</option>
+            <option value="Entertainment: Musicals Theatres">
+              Entertainment: Musicals Theatres
+            </option>
+            <option value="Entertainment: Television">
+              Entertainment: Television
+            </option>
+            <option value="Entertainment: Video Games">
+              Entertainment: Video Games
+            </option>
+            <option value="Entertainment: Board Games">
+              Entertainment: Board Games
+            </option>
             <option value="General Knowledge">General Knowledge</option>
             <option value="Geography">Geography</option>
             <option value="History">History</option>
@@ -84,10 +102,7 @@
           </select>
 
           <label for="trivia-question">Enter in trivia/question:</label>
-          <textarea name="trivia-question"
-          id="trivia-question"
-          required>
-            
+          <textarea name="trivia-question" id="trivia-question" required>
           </textarea>
           <label for="correct-answer">Enter in the correct answer:</label>
           <input
@@ -98,17 +113,16 @@
           />
           <label for="incorrect-answer">Enter in the incorrect answer:</label>
           <textarea
-          name="incorrect-answer"
-          id="incorrect-answer"
-          placeholder="If this is a multiple choice question, you have to enter in three incorrect answers seperated by a comma"
-          required>
-            
+            name="incorrect-answer"
+            id="incorrect-answer"
+            placeholder="If this is a multiple choice question, you have to enter in three incorrect answers seperated by a comma"
+            required>
           </textarea>
           <button id="sumbit-new-qa">Sumbit Your Trivia!</button>
         </form>
       </div>
     </section>
-    <section>
+    <section class="last-section">
       <div>
         <h2>Play or Study!</h2>
         <p>
@@ -169,13 +183,19 @@
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
           </select>
-          
+
           <button id="study-qa">Create</button>
         </form>
       </div>
       <div>
-        <div id="random-card-section"></div>
-        <div id="study-card-section"></div>
+        <section class="random-container">
+          <div class="random-row">
+          </div>
+        </section>
+        <section class="study-container">
+          <div class="study-row"></div>
+        </section>
+  
       </div>
     </section>
 

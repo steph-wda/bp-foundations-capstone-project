@@ -1,15 +1,22 @@
 const searchBtn = document.getElementById("search-btn");
 const searchInput = document.getElementById("search");
+
+const modalContainerDiv = document.getElementById("my-modal");
+const modalContentDiv = document.querySelector(".modal-content");
+
 const dailyTriviaH2 = document.getElementById("daily-trivia-heading");
 const dailyTriviaDiv = document.getElementById("daily-trivia");
+
 const randomizeBtn = document.getElementById("random-qa");
-const randomDiv = document.getElementById("random-card-section");
+const randomRow = document.querySelector(".random-row");
+
+const studyBtn = document.getElementById("study-qa");
+const studyRow = document.querySelector(".study-row");
 const studyCategory = document.getElementById("deck-category");
 const studyAmount = document.getElementById("deck-amount");
 const studyType = document.getElementById("deck-type");
 const studyDifficulty = document.getElementById("deck-difficulty");
-const studyBtn = document.getElementById("study-qa");
-const studyDiv = document.getElementById("study-card-section");
+
 const addQABtn = document.getElementById("sumbit-new-qa");
 const addCategory = document.getElementById("question-category");
 const addType = document.getElementById("question-type");
@@ -17,8 +24,6 @@ const addDifficulty = document.getElementById("question-difficulty");
 const addQuestion = document.getElementById("trivia-question");
 const addCorrectAnswer = document.getElementById("correct-answer");
 const addIncorrectAnswer = document.getElementById("incorrect-answer");
-const modalContainerDiv = document.getElementById("my-modal");
-const modalContentDiv = document.querySelector(".modal-content");
 
 const getDailyTriviaHeading = () => {
   const months = [
@@ -54,43 +59,43 @@ const getDailyTriviaHeading = () => {
 };
 
 const displayResults = (results) => {
-  if(document.getElementsByClassName('close') !== null){
-    modalContentDiv.innerHTML=''
+  if (document.getElementsByClassName("close") !== null) {
+    modalContentDiv.innerHTML = "";
   }
 
-  if(results.length < 1){
-    alert('No matches found')
-  }else {
-  let numberOfMatches = results.length/2
-  let resultsHeading = document.createElement("h3")
-  let mSpan = document.createElement("span");
-  mSpan.setAttribute("class", "close");
-  modalContentDiv.appendChild(mSpan);
-  modalContentDiv.appendChild(resultsHeading)
-  mSpan.innerHTML = `&times;`;
-  resultsHeading.innerHTML = `${numberOfMatches} Matches Returned`
-  mSpan.onclick = function(){
-    modalContainerDiv.style.display = 'none'
-  }
-  window.onclick = function(event){
-    if(event.target === modalContainerDiv){
-      modalContainerDiv.style.display = 'none'
+  if (results.length < 1) {
+    alert("No matches found");
+  } else {
+    let numberOfMatches = results.length / 2;
+    let resultsHeading = document.createElement("h3");
+    let mSpan = document.createElement("span");
+    mSpan.setAttribute("class", "close");
+    modalContentDiv.appendChild(mSpan);
+    modalContentDiv.appendChild(resultsHeading);
+    mSpan.innerHTML = `&times;`;
+    resultsHeading.innerHTML = `${numberOfMatches} Matches Returned`;
+    mSpan.onclick = function () {
+      modalContainerDiv.style.display = "none";
+    };
+    window.onclick = function (event) {
+      if (event.target === modalContainerDiv) {
+        modalContainerDiv.style.display = "none";
+      }
+    };
+
+    for (let i = 0; i < results.length; i = i + 2) {
+      j = i + 1;
+      let qPara = document.createElement("p");
+      let aPara = document.createElement("p");
+      modalContentDiv.appendChild(qPara);
+      modalContentDiv.appendChild(aPara);
+      modalContentDiv.append(document.createElement("hr"));
+      qPara.innerHTML = results[i];
+      aPara.innerHTML = results[j];
     }
-  }
 
-  for (let i = 0; i < results.length; i = i + 2) {
-    j = i + 1;
-    let qPara = document.createElement("p");
-    let aPara = document.createElement("p");
-    modalContentDiv.appendChild(qPara);
-    modalContentDiv.appendChild(aPara);
-    modalContentDiv.append(document.createElement("hr"));
-    qPara.innerHTML = results[i];
-    aPara.innerHTML = results[j];
+    modalContainerDiv.style.display = "block";
   }
-
-  modalContainerDiv.style.display ="block"
-}
 };
 
 const getResults = (e) => {
@@ -115,30 +120,14 @@ const getResults = (e) => {
 };
 
 const rightAnswerClicked = () => {
-  let right = document.getElementById("card-correct-answer");
-  let rightSpan = document.createElement("span");
-  right.appendChild(rightSpan);
-  rightSpan.innerHTML = "Correct! &#128522;";
-};
+  alert("Correct!")
+}
 
 const wrongAnswerClicked = () => {
-  //   if(document.getElementsByTagName('span').length !== 0){
-  //     document.getElementById('card-incorrect-answer').removeChild('span')
-  // }
-  let wrong = document.getElementById("card-incorrect-answer");
-  let wrongSpan = document.createElement("span");
-  wrong.appendChild(wrongSpan);
-  wrongSpan.innerHTML = "Incorrect! &#128542;";
-  console.log(wrong);
-  console.log(wrongSpan);
+  alert("Incorrect! Try Again.")
 };
 
-const createCardBack = (correct, incorrect) => {
-  //checks to see if an element with a class of card-body exists, if id does it will clear it
-  if (document.getElementById("card-body") !== null) {
-    document.getElementById("card-body").innerHTML = "";
-  }
-
+const displayAnswers = (correct, incorrect, name) => {
   // will split string into an array
   let answersArray = incorrect.split(",");
   answersArray.push(correct);
@@ -153,41 +142,37 @@ const createCardBack = (correct, incorrect) => {
     [answersArray[i], answersArray[j]] = [answersArray[j], answersArray[i]];
   }
 
-  let cardBack = `<div class="card-back">
-  <div class="card-content">
-  <div class="card-body-class" id="card-body"></div></div>
-  </div>`;
-  randomDiv.innerHTML += cardBack;
-
   //used id because there was an issue when I used getElementsByClassName for this part
-  let answerBody = document.getElementById("card-body");
+  let answerBody = document.getElementsByName(name);
+  console.log(answerBody)
 
   answersArray.forEach((a) => {
+    let count = 1;
     if (a === correct) {
       let correctAnswerPara = document.createElement("p");
-      correctAnswerPara.setAttribute("id", "card-correct-answer");
-      answerBody.appendChild(correctAnswerPara);
+      correctAnswerPara.setAttribute("name", "${count}ap");
+      answerBody[0].appendChild(correctAnswerPara)
       correctAnswerPara.innerHTML = a;
+      
       correctAnswerPara.addEventListener("click", rightAnswerClicked);
+      count++;
     } else {
       let incorrectAnswerPara = document.createElement("p");
-      incorrectAnswerPara.setAttribute("id", "card-incorrect-answer");
-      answerBody.appendChild(incorrectAnswerPara);
+      incorrectAnswerPara.setAttribute("name", "${count}ap");
+      answerBody[0].appendChild(incorrectAnswerPara)
       incorrectAnswerPara.innerHTML = a;
       incorrectAnswerPara.addEventListener("click", wrongAnswerClicked);
+      count++;
     }
   });
 };
 
 const createCardFrontRandom = (set) => {
-  if (studyDiv.innerHTML) {
-    console.log("div detected");
-    studyDiv.innerHTML = "";
+  if (randomRow.innerHTML !== null) {
+    randomRow.innerHTML = "";
   }
-  console.log(set);
   let currentCard = 1;
-  let totalCards = 10;
-  randomDiv.innerHTML = "";
+  studyRow.innerHTML = "";
   set.forEach((s) => {
     if (s.correct_answer.includes('"')) {
       console.log(`yes " ${currentCard}`);
@@ -208,15 +193,20 @@ const createCardFrontRandom = (set) => {
       });
     }
 
-    let triviaCard = `<div class="random-inner">
-                      <div class="random-card-front">
-                      <div class="number-text"> ${currentCard} / ${totalCards}</div>
-                      <p class="qa-area">${s.question}</p>
-                      <div class="random-answer" onclick="createCardBack('${s.correct_answer}', '${s.incorrect_answers}' )">Flip</div>
+    let content = `<div class="card">
+                      <div class="random-question">
+                      <h3>${s.question}</h3>
+                      <div>
+                      <div class="content">
+                      <div name="${currentCard}a"></div>
+                      <div class="button" onclick="displayAnswers('${s.correct_answer}', '${s.incorrect_answers}','${currentCard}a' )">Click To Guess Answer</div>
+                      </div>
                       </div>`;
-    randomDiv.innerHTML += triviaCard;
+    randomRow.innerHTML += content;
     currentCard++;
+    
   });
+  console.log(set);
 };
 
 const getRandomQAHandler = (e) => {
@@ -236,36 +226,21 @@ const createDBHandler = () => {
   }
 };
 
-const createCardBackStudy = (correct) => {
-  //checks to see if an element with a class of card-body exists, if id does it will clear it
-  if (document.getElementById("card-body") !== null) {
-    document.getElementById("card-body").innerHTML = "";
-  }
-
-  let cardBack = `<div class="card-back">
-  <div class="card-content">
-  <div class="card-body-class" id="card-body"></div></div>
-  </div>`;
-  studyDiv.innerHTML += cardBack;
-
-  //used id because there was an issue when I used getElementsByClassName for this part
-  let answerBody = document.getElementById("card-body");
-
-  let correctAnswerPara = document.createElement("p");
-  correctAnswerPara.setAttribute("id", "card-correct-answer");
-  answerBody.appendChild(correctAnswerPara);
-  correctAnswerPara.innerHTML = correct;
+const revealAnswer = (name) => {
+  let show = document.getElementsByName(name);
+  show[0].style.fontStyle = "italic";
+  show[0].style.display = "block";
 };
 
-const createFrontCardStudy = (set) => {
-  if (randomDiv.innerHTML) {
+const createStudySlides = (set) => {
+  if (randomRow.innerHTML) {
     console.log("div detected");
-    randomDiv.innerHTML = "";
+    randomRow.innerHTML = "";
   }
-
   let currentCard = 1;
-  let totalCards = set.length;
-  studyDiv.innerHTML = "";
+  studyRow.innerHTML = "";
+
+
   set.forEach((s) => {
     if (s.correct_answer.includes('"')) {
       console.log(`yes " ${currentCard}`);
@@ -280,13 +255,20 @@ const createFrontCardStudy = (set) => {
       s.correct_answer = s.correct_answer.replace(/&#039;/g, "'");
     }
 
-    let triviaCard = `<div class="study-inner">
-                      <div class="study-card-front">
-                      <div class="number-text"> ${currentCard} / ${totalCards}</div>
-                      <p class="sq-area">${s.question}</p>
-                      <div class="study-answer" onclick="createCardBackStudy('${s.correct_answer}')">Flip</div>
+
+    let content = ` <div class="card">
+                      <div class="study-question">
+                      <h3>${s.question}</h3>
+                      </div>
+                      <div style="text class="content">
+                        <div class="revealed" style="display:none; color:white" name="${currentCard}">${s.correct_answer}</div>
+                        <div class="button" onclick="revealAnswer('${currentCard}')">Reveal Answer</div>
+                      </div>
                       </div>`;
-    studyDiv.innerHTML += triviaCard;
+
+                      
+                   
+    studyRow.innerHTML += content;
     currentCard++;
   });
 };
@@ -303,14 +285,14 @@ const createStudyQAHandler = (e) => {
       .get(`/api/study?amount=${amount}&category=${category}`)
       .then((res) => {
         const studySet = res.data;
-        createFrontCardStudy(studySet);
+        createStudySlides(studySet);
       });
   } else if (type !== "any" && difficulty === "any") {
     axios
       .get(`/api/study?amount=${amount}&category=${category}&type=${type}`)
       .then((res) => {
         const studySet = res.data;
-        createFrontCardStudy(studySet);
+        createStudySlides(studySet);
       });
   } else if (type === "any" && difficulty !== "any") {
     axios
@@ -319,7 +301,7 @@ const createStudyQAHandler = (e) => {
       )
       .then((res) => {
         const studySet = res.data;
-        createFrontCardStudy(studySet);
+        createStudySlides(studySet);
       });
   } else {
     axios
@@ -328,7 +310,7 @@ const createStudyQAHandler = (e) => {
       )
       .then((res) => {
         const studySet = res.data;
-        createFrontCardStudy(studySet);
+        createStudySlides(studySet);
       });
   }
 };
@@ -369,7 +351,8 @@ const getDailyTriviaHandler = () => {
   axios.get("/api/daily").then((res) => {
     let triviaCard = `<div class="trivia-card">
                    <p>${res.data[0].question}</p>
-                   <p>${res.data[0].correct_answer}</p>
+                   <p style="font-style:italic">${res.data[0].correct_answer}</p>
+                   </div>
                   `;
     dailyTriviaDiv.innerHTML += triviaCard;
   });
