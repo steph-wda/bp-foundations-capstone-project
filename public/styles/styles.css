@@ -111,20 +111,20 @@ body {
   }
   
 
+  div.top select {
+    display: block;
+    margin: 15px;
+    width: 75%;
+    height: 25px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    
+    
+  }
 
-
-div.top select {
-  display: block;
-  margin: 15px;
-  width: 75%;
-  height: 25px;
-  padding: 12px 20px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
-  font-size: 16px;
-}
 
 div.top input {
   display: block;
@@ -136,7 +136,7 @@ div.top input {
   border: 2px solid #ccc;
   border-radius: 4px;
   background-color: #f8f8f8;
-  font-size: 16px;
+  font-size: 16px
 }
 
 div.top textarea{
@@ -268,4 +268,3 @@ button:focus {
     width: 80%;
   }
 }
-
